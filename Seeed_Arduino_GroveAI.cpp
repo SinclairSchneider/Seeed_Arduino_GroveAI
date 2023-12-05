@@ -547,7 +547,8 @@ void WEI::flash_write(const uint8_t *data, uint32_t len, bool crc)
 {
     uint16_t crc16 = 0;
     _wire_com->beginTransmission(HIMAX_FLASH_ADDRESS);
-    _wire_com->write(data, len);
+    //_wire_com->write(data, len);
+    _wire_com->write(data, static_cast<size_t>(len));
     if (crc)
     {
         crc16 = flash_crc16(data, len);
